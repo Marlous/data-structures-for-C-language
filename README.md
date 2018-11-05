@@ -1,6 +1,6 @@
 # Data Structures For C Language
 ## Introduction - 介绍
-Exercise Project，数据结构 C 语言版。
+数据结构 C 语言版（Exercise Project）。
 
 ### Summary - 概要
 1. 线性表
