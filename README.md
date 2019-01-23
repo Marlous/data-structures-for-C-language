@@ -10,6 +10,7 @@
 2. 栈和队列
 
 ## Requirements - 必要条件
+- OS：Windows 10
 - IDE：Eclipse Cpp 2018-09
 - 编译器：GNU GCC v6.3.0
 
