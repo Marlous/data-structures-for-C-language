@@ -3,13 +3,10 @@
 数据结构 C 语言版（Exercise Project）。
 
 ### Summary - 概要
-1. 线性表
-- 线性表的顺序表示和实现
-- 线性表的链式表示和实现（线性链表、循环链表、双向链表）
-
-2. 栈和队列
+数据结构内容详见 docs 文件夹内的文档。
 
 ## Requirements - 必要条件
+- OS：Windows 10
 - IDE：Eclipse Cpp 2018-09
 - 编译器：GNU GCC v6.3.0
 
