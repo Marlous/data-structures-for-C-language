@@ -1,13 +1,13 @@
 /*
  * linear_list.h
  *
- *  Created on: 2019Äê2ÔÂ20ÈÕ
+ *  Created on: 2019å¹´2æœˆ20æ—¥
  *      Author: Mo
  */
 
 #ifndef SRC_LINEAR_LIST_LINEAR_LIST_H_
 #define SRC_LINEAR_LIST_LINEAR_LIST_H_
 
-int linear_list(void); // Ö´ĞĞ³É¹¦·µ»Ø 0
+int linear_list(void); // æ‰§è¡ŒæˆåŠŸè¿”å›å€¼ä¸º 0
 
 #endif /* SRC_LINEAR_LIST_LINEAR_LIST_H_ */

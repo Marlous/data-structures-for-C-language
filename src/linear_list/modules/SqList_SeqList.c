@@ -1,13 +1,13 @@
 #include "SqList_SeqList.h"
 
-// ¾²Ì¬·ÖÅäµÄÒ»Î¬Êı×éÊµÏÖ¡£
+// é™æ€åˆ†é…ä¸€ç»´æ•°ç»„
 #define MAX_SIZE 50
 typedef struct{
 	ElemType data[MAX_SIZE];
 	int length;
 }SqList;
 
-// ¶¯Ì¬·ÖÅäµÄÒ»Î¬Êı×éÊµÏÖ¡£
+// åŠ¨æ€åˆ†é…ä¸€ç»´æ•°ç»„
 #define INIT_SIZE 100
 typedef struct{
 	ElemType *data;
