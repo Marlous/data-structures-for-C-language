@@ -1,9 +1,10 @@
-#include "SqList_SeqList.h"
+#include <core.h>
+#include "linear_list_modules.h"
 
 // 静态分配一维数组
-#define MAX_SIZE 50
+#define SQLIST_DATA_MAX_SIZE 50
 typedef struct{
-	ElemType data[MAX_SIZE];
+	ElemType data[SQLIST_DATA_MAX_SIZE];
 	int length;
 }SqList;
 
@@ -11,5 +12,6 @@ typedef struct{
 #define INIT_SIZE 100
 typedef struct{
 	ElemType *data;
-	int MAX_SIZE,length;
+	int MAX_SIZE;
+	int length;
 }SeqList;

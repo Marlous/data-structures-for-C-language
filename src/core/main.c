@@ -1,7 +1,11 @@
-#include "main.h"
+#include <core.h>
+#include <config.h>
+
 
 int main()
 {
-	linear_list(void);
+	setvbuf(stdout,NULL,_IONBF,0);  // Eclipse CDT console debug output.
+	printf("main c test!\n");
+	linear_list();
 	return 0;
 }
