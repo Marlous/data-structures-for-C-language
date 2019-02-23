@@ -17,7 +17,7 @@ typedef struct{
 }SeqList;
 
 
-int SqList_SeqList()
+int SqList_SeqList(void)
 {
 	printf("SqList_SeqList c test!\n");
 	return 0;
