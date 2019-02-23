@@ -15,3 +15,12 @@ typedef struct{
 	int MAX_SIZE;
 	int length;
 }SeqList;
+
+
+int SqList_SeqList()
+{
+	printf("SqList_SeqList c test!\n");
+	return 0;
+}
+
+

@@ -12,4 +12,7 @@
 #define ElemType char
 
 
+int SqList_SeqList(void);
+
+
 #endif /* SRC_LINEAR_LIST_MODULES_LINEAR_LIST_MODULES_H_ */
