@@ -2,7 +2,7 @@
 #include "linear_list.h"
 #include "linear_list_modules.h"
 
-int linear_list(void)
+int linear_list()
 {
 	printf("linear_list c test\n");
 	return 0;
