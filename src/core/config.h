@@ -10,4 +10,10 @@
 
 #include "linear_list.h"
 
+
+/* API */
+/* 供子模块回调，返回上级菜单 */
+int main(void);
+
+
 #endif /* SRC_CORE_CONFIG_H_ */

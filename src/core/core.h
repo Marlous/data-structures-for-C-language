@@ -19,6 +19,7 @@
 #include<math.h>
 #include<sys/timeb.h>
 #include<stdarg.h>
+#include<time.h>
 
 
 #define TRUE 1
