@@ -6,20 +6,20 @@
 /*
  * Declare of linear_list
  */
-void DisplayLinearListMenu(void);
-void LinearListMenuSelect(void);
+Status DisplayLinearListMenu(void);
+Status LinearListMenuSelect(void);
 
 
 /*
  * Main of linear_list
  */
-int linear_list(void)
+Status linear_list(void)
 {
 	system("cls");
 	DisplayLinearListMenu();
 	LinearListMenuSelect();
 
-	return 0;
+	return OK;
 }
 
 
@@ -27,7 +27,7 @@ int linear_list(void)
  * Sub of Main code
  */
 /* Display LinearList Menu */
-void DisplayLinearListMenu(void)
+Status DisplayLinearListMenu(void)
 {
 	printf("# linear list #\n");
 	printf("# 1 SqList and SeqList\n");
@@ -35,10 +35,12 @@ void DisplayLinearListMenu(void)
 	printf("# 3 DNode\n");
 	printf("# b Back!\n");
 	printf("# q Exit!\n");
+
+	return OK;
 }
 
 /* LinearList Menu Select */
-void LinearListMenuSelect(void)
+Status LinearListMenuSelect(void)
 {
 	while(TRUE)
 	{
@@ -68,5 +70,5 @@ void LinearListMenuSelect(void)
 				break;
 		}
 	}
-
+	return OK;
 }

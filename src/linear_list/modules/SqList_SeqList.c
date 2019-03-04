@@ -5,24 +5,14 @@
 /*
  * Declare of SqList_SeqList
  */
-void DisplaySqListSeqListMenu(void);
-void SqListSeqListMenuSelect(void);
+Status DisplaySqListSeqListMenu(void);
+Status SqListSeqListMenuSelect(void);
 
 
 /*
  * Define and Declare of SqList_SeqList
  */
-/* 静态分配一维数组（本程序省略静态分配的，只用动态分配的） */
-/*
-#define SQLIST_DATA_MAX_SIZE 50
-
-typedef struct{
-	ElemType data[SQLIST_DATA_MAX_SIZE]; // 储存元素的数组
-	int length; // 当前的长度（当前存储数据元素的个数）
-}SqList; // 定义为，静态分配一维数组的顺序表（线性表的顺序实现）类型
-*/
-
-/* 动态分配一维数组 */
+/* 动态分配一维数组（本程序省略静态分配的，只用动态分配的）*/
 #define SEQLIST_INIT_SIZE 100
 
 
@@ -39,7 +29,7 @@ Status InitList(SeqList *L);
 /*
  * Main of SqList_SeqList
  */
-int SqList_SeqList(void)
+Status SqList_SeqList(void)
 {
 	system("cls");
 	DisplaySqListSeqListMenu();
@@ -53,7 +43,7 @@ int SqList_SeqList(void)
  * Sub of SqList_SeqList
  */
 /* Display SqListSeqList Menu */
-void DisplaySqListSeqListMenu(void)
+Status DisplaySqListSeqListMenu(void)
 {
 	printf("# SqList and SeqList #\n");
 	printf("# 1 InitList(&L)\n");
@@ -67,10 +57,12 @@ void DisplaySqListSeqListMenu(void)
 	printf("# 9 PrintList(L)\n");
 	printf("# b Back!\n");
 	printf("# q Exit!\n");
+
+	return OK;
 }
 
 /* SqListSeqList Menu Select */
-void SqListSeqListMenuSelect(void)
+Status SqListSeqListMenuSelect(void)
 {
 	SeqList listcase; // 定义一个顺序表类型的变量 listcase
 
@@ -90,7 +82,7 @@ void SqListSeqListMenuSelect(void)
 				}
 				else
 				{
-					printf("InitList falsed!\n");
+					printf("InitList false!\n");
 				}
 				break;
 			case 'b':
@@ -105,7 +97,7 @@ void SqListSeqListMenuSelect(void)
 				break;
 		}
 	}
-
+	return OK;
 }
 
 /* Init List */
