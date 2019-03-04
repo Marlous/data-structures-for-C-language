@@ -5,9 +5,9 @@
 /*
  * Declare of Main code
  */
-void DisplayCopyrightInfo(void);
-void DisplayMainMenu(void);
-void MainMenuSelect(void);
+Status DisplayCopyrightInfo(void);
+Status DisplayMainMenu(void);
+Status MainMenuSelect(void);
 
 
 /*
@@ -30,7 +30,7 @@ int main()
  * Sub of Main code
  */
 /* Display Copyright Info */
-void DisplayCopyrightInfo(void)
+Status DisplayCopyrightInfo(void)
 {
 	time_t timep;
 	struct tm *p;
@@ -41,18 +41,22 @@ void DisplayCopyrightInfo(void)
 	printf("# Data Structures for C language  #\n");
 	printf("# Copyright (c) Marlous %d      #\n",1900+p->tm_year);
 	printf("# # # # # # # # # # # # # # # # # #\n");
+
+	return OK;
 }
 
 /* Display Main Menu */
-void DisplayMainMenu(void)
+Status DisplayMainMenu(void)
 {
 	printf("\n# Main menu #\n");
 	printf("# 1 Linear List\n");
 	printf("# q Exit!\n");
+
+	return OK;
 }
 
 /* Main Menu Select */
-void MainMenuSelect(void)
+Status MainMenuSelect(void)
 {
 	while(TRUE)
 	{
@@ -74,4 +78,5 @@ void MainMenuSelect(void)
 				break;
 		}
 	}
+	return OK;
 }
