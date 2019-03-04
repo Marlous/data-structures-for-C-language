@@ -1,4 +1,4 @@
-#include <core.h>
+#include <config.h>
 #include "linear_list.h"
 #include "linear_list_modules.h"
 
