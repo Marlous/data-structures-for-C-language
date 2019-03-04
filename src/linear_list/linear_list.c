@@ -59,10 +59,10 @@ Status LinearListMenuSelect(void)
 	/*		case '3':
 					DNode();break;*/
 			case 'b':
-				system("cls");
 				main();
 				break;
 			case 'q':
+				system("cls");
 				exit(0);
 				break;
 			default:

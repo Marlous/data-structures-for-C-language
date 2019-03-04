@@ -86,10 +86,10 @@ Status SqListSeqListMenuSelect(void)
 				}
 				break;
 			case 'b':
-				system("cls");
 				linear_list();
 				break;
 			case 'q':
+				system("cls");
 				exit(0);
 				break;
 			default:
