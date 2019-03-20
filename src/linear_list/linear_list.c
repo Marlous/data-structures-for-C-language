@@ -1,19 +1,17 @@
-#include <config.h>
+#include "common.h"
+#include "main.h"
 #include "linear_list.h"
 #include "linear_list_modules.h"
 
 
-/*
- * Declare of linear_list
- */
 Status DisplayLinearListMenu(void);
 Status LinearListMenuSelect(void);
 
 
 /*
- * Main of linear_list
+ * Main function
  */
-Status linear_list(void)
+Status LinearList(void)
 {
 	system("cls");
 	DisplayLinearListMenu();
@@ -24,9 +22,8 @@ Status linear_list(void)
 
 
 /*
- * Sub of Main code
+ * Sub function
  */
-/* Display LinearList Menu */
 Status DisplayLinearListMenu(void)
 {
 	printf("# linear list #\n");
@@ -39,36 +36,44 @@ Status DisplayLinearListMenu(void)
 	return OK;
 }
 
-/* LinearList Menu Select */
+
 Status LinearListMenuSelect(void)
 {
 	while(TRUE)
 	{
 		char selectnum;
 		printf("Please enter number to select:");
-		scanf("%c",&selectnum);
+		scanf("%c", &selectnum);
 		getchar(); // 读入 scanf() 函数留下的回车
 
 		switch(selectnum)
 		{
 			case '1':
-				SqList_SeqList();
+				SqListSeqList();
 				break;
+
 	/*		case '2':
-					LNode();break;*/
+					LNode();
+					break;*/
+
 	/*		case '3':
-					DNode();break;*/
+					DNode();
+					break;*/
+
 			case 'b':
 				main();
 				break;
+
 			case 'q':
 				system("cls");
 				exit(0);
 				break;
+
 			default:
 				printf("ERROR!\n");
 				break;
 		}
 	}
+
 	return OK;
 }

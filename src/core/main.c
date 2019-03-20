@@ -1,21 +1,20 @@
-#include <config.h>
-#include<main.h>
+#include "common.h"
+#include "main.h"
+#include "linear_list.h"
 
 
-/*
- * Declare of Main code
- */
 Status DisplayCopyrightInfo(void);
 Status DisplayMainMenu(void);
 Status MainMenuSelect(void);
 
 
 /*
- * Main of Main code
+ * Main function
  */
-int main()
+int main(void)
 {
-	setvbuf(stdout,NULL,_IONBF,0);  // Eclipse CDT console debug output.
+	/* Eclipse CDT console debug output */
+	setvbuf(stdout, NULL, _IONBF, 0);
 
 	system("cls");
 	DisplayCopyrightInfo();
@@ -27,25 +26,25 @@ int main()
 
 
 /*
- * Sub of Main code
+ * Sub function
  */
-/* Display Copyright Info */
 Status DisplayCopyrightInfo(void)
 {
-	time_t timep;
 	struct tm *p;
-	time (&timep);
-	p=gmtime(&timep);
+	time_t    timep;
+
+	time(&timep);
+	p = gmtime(&timep);
 
 	printf("# # # # # # # # # # # # # # # # # #\n");
 	printf("# Data Structures for C language  #\n");
-	printf("# Copyright (c) Marlous %d      #\n",1900+p->tm_year);
+	printf("# Copyright (c) Marlous %d      #\n", 1900 + p->tm_year);
 	printf("# # # # # # # # # # # # # # # # # #\n");
 
 	return OK;
 }
 
-/* Display Main Menu */
+
 Status DisplayMainMenu(void)
 {
 	printf("\n# Main menu #\n");
@@ -55,29 +54,33 @@ Status DisplayMainMenu(void)
 	return OK;
 }
 
-/* Main Menu Select */
+
 Status MainMenuSelect(void)
 {
 	while(TRUE)
 	{
 		char selectnum;
+
 		printf("Please enter number to select:");
-		scanf("%c",&selectnum);
+		scanf("%c", &selectnum);
 		getchar(); // 读入 scanf() 函数留下的回车
 
 		switch(selectnum)
 		{
 			case '1':
-				linear_list();
+				LinearList();
 				break;
+
 			case 'q':
 				system("cls");
 				exit(0);
 				break;
+
 			default:
 				printf("ERROR!\n");
 				break;
 		}
 	}
+
 	return OK;
 }

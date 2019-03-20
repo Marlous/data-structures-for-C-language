@@ -9,7 +9,6 @@
 #define SRC_CORE_MAIN_H_
 
 
-/* Declare */
 int main(void);
 
 

@@ -5,15 +5,24 @@
  *      Author: Mo
  */
 
+
 #ifndef SRC_LINEAR_LIST_MODULES_LINEAR_LIST_MODULES_H_
 #define SRC_LINEAR_LIST_MODULES_LINEAR_LIST_MODULES_H_
 
 
 #define ElemType char
+#define SEQLIST_INIT_SIZE 100 // 动态分配一维数组（本程序省略静态分配的，只用动态分配的）
 
-/* API */
+
+typedef struct{
+	ElemType *data; // 指示动态分配数组的指针
+	int      max_size; // 储存元素的数组的最大容量
+	int      length; // 当前的长度（当前存储数据元素的个数）
+}seqlist_s;
+
+
 /* Using module of SqList_SeqList */
-Status SqList_SeqList(void);
+Status SqListSeqList(void);
 
 /* Using module of LNode */
 Status LNode(void);

@@ -1,35 +1,19 @@
-#include <config.h>
+#include "common.h"
 #include "linear_list_modules.h"
+#include "linear_list.h"
 
 
-/*
- * Declare of SqList_SeqList
- */
 Status DisplaySqListSeqListMenu(void);
 Status SqListSeqListMenuSelect(void);
 
 
-/*
- * Define and Declare of SqList_SeqList
- */
-/* 动态分配一维数组（本程序省略静态分配的，只用动态分配的）*/
-#define SEQLIST_INIT_SIZE 100
-
-
-typedef struct{
-	ElemType *data; // 指示动态分配数组的指针
-	int max_size; // 储存元素的数组的最大容量
-	int length; // 当前的长度（当前存储数据元素的个数）
-}SeqList;
-
-
-Status InitList(SeqList *L);
+Status InitList(seqlist_s *L);
 
 
 /*
- * Main of SqList_SeqList
+ * Main function
  */
-Status SqList_SeqList(void)
+Status SqListSeqList(void)
 {
 	system("cls");
 	DisplaySqListSeqListMenu();
@@ -40,9 +24,8 @@ Status SqList_SeqList(void)
 
 
 /*
- * Sub of SqList_SeqList
+ * Sub function
  */
-/* Display SqListSeqList Menu */
 Status DisplaySqListSeqListMenu(void)
 {
 	printf("# SqList and SeqList #\n");
@@ -61,16 +44,16 @@ Status DisplaySqListSeqListMenu(void)
 	return OK;
 }
 
-/* SqListSeqList Menu Select */
+
 Status SqListSeqListMenuSelect(void)
 {
-	SeqList listcase; // 定义一个顺序表类型的变量 listcase
+	seqlist_s listcase; // 定义一个顺序表类型的变量 listcase
 
 	while(TRUE)
 	{
 		char selectnum;
 		printf("Please enter number to select:");
-		scanf("%c",&selectnum);
+		scanf("%c", &selectnum);
 		getchar(); // 读入 scanf() 函数留下的回车
 
 		switch(selectnum)
@@ -78,20 +61,23 @@ Status SqListSeqListMenuSelect(void)
 			case '1':
 				if(InitList(&listcase) == OK)
 				{
-					printf("InitList successed!\n");
+					printf("InitList successes!\n");
 				}
 				else
 				{
 					printf("InitList false!\n");
 				}
 				break;
+
 			case 'b':
-				linear_list();
+				LinearList();
 				break;
+
 			case 'q':
 				system("cls");
 				exit(0);
 				break;
+
 			default:
 				printf("ERROR!\n");
 				break;
@@ -100,19 +86,23 @@ Status SqListSeqListMenuSelect(void)
 	return OK;
 }
 
-/* Init List */
-Status InitList(SeqList *L) // 接收一个定义好的变量的地址（实参是变量的地址，形参是指针变量）
+
+Status InitList(seqlist_s *L) // 接收一个定义好的变量的地址（实参是变量的地址，形参是指针变量）
 {
 	L->data = NULL; // 先将成员体变量 data 初始化。这里 L 前的星号表示引用实参 listcase 变量
 	L->data = (ElemType *)malloc(SEQLIST_INIT_SIZE * sizeof(ElemType)); // 申请 SEQLIST_INIT_SIZE 个数的  ElemType 类型长度的空间，将指针变量（地址值）赋给 SeqList 类型的变量的成员变量（指针变量）*data
+
 	if(L->data == NULL) // 如果分配失败（malloc 函数分配失败返回 NULL）则退出
 	{
-		exit(ERROR);
+		exit(1);
 	}
+
 	L->max_size = SEQLIST_INIT_SIZE; // 初始化表容量为 SEQLIST_INIT_SIZE
 	L->length = 0; // 初始化表长度为 0
+
 	return OK;
 }
+
 
 /* List Insert */
 /*

@@ -9,9 +9,8 @@
 #define SRC_LINEAR_LIST_LINEAR_LIST_H_
 
 
-/* API */
 /* Using module of linear_list */
-Status linear_list(void);
+Status LinearList(void);
 
 
 #endif /* SRC_LINEAR_LIST_LINEAR_LIST_H_ */
