@@ -1,9 +1,10 @@
 /*
  * main.h
  *
- *  Created on: 2019年3月5日
+ *  Created on: 2019/3/5
  *      Author: Mo
  */
+
 
 #ifndef SRC_CORE_MAIN_H_
 #define SRC_CORE_MAIN_H_

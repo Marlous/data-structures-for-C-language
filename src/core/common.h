@@ -1,9 +1,10 @@
 /*
  * common.h
  *
- *  Created on: 2019年3月20日
+ *  Created on: 2019/3/20
  *      Author: Mo
  */
+
 
 #ifndef SRC_CORE_COMMON_H_
 #define SRC_CORE_COMMON_H_

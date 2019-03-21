@@ -1,3 +1,11 @@
+/*
+ * SqList_SeqList.c
+ *
+ *  Created on: 2019/3/20
+ *      Author: Mo
+ */
+
+
 #include "common.h"
 #include "linear_list_modules.h"
 #include "linear_list.h"

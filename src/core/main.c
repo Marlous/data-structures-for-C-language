@@ -1,3 +1,11 @@
+/*
+ * main.c
+ *
+ *  Created on: 2019/3/20
+ *      Author: Mo
+ */
+
+
 #include "common.h"
 #include "main.h"
 #include "linear_list.h"
