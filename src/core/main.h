@@ -10,6 +10,11 @@
 #define SRC_CORE_MAIN_H_
 
 
+/*
+ * API
+ */
+
+/* Using module of main */
 int main(void);
 
 

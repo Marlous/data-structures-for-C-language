@@ -21,8 +21,7 @@ Status MainMenuSelect(void);
  */
 int main(void)
 {
-	/* Eclipse CDT console debug output */
-	setvbuf(stdout, NULL, _IONBF, 0);
+	setvbuf(stdout, NULL, _IONBF, 0); // Eclipse CDT console debug output
 
 	system("cls");
 	DisplayCopyrightInfo();

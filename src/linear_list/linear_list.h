@@ -10,6 +10,10 @@
 #define SRC_LINEAR_LIST_LINEAR_LIST_H_
 
 
+/*
+ * API
+ */
+
 /* Using module of linear_list */
 Status LinearList(void);
 
