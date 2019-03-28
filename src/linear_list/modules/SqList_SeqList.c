@@ -15,7 +15,7 @@ Status DisplaySqListSeqListMenu(void);
 Status SqListSeqListMenuSelect(void);
 
 
-Status InitList(seqlist_s *L);
+Status InitList(seq_list_s *L);
 
 
 /*
@@ -55,7 +55,7 @@ Status DisplaySqListSeqListMenu(void)
 
 Status SqListSeqListMenuSelect(void)
 {
-	seqlist_s listcase; // 定义一个顺序表类型的变量 listcase
+	seq_list_s listcase; // 定义一个顺序表类型的变量 listcase
 
 	while(TRUE)
 	{
@@ -96,7 +96,7 @@ Status SqListSeqListMenuSelect(void)
 
 
 /* 顺序表的初始化 */
-Status InitList(seqlist_s *L) // 接收一个定义好的变量的地址（实参是变量的地址，形参是指针变量）
+Status InitList(seq_list_s *L) // 接收一个定义好的变量的地址（实参是变量的地址，形参是指针变量）
 {
 	L->data = NULL; // 先将成员体变量 data 初始化。这里 L 前的星号表示引用实参 listcase 变量
 	L->data = (ElemType *)malloc(SEQLIST_INIT_SIZE * sizeof(ElemType)); // 申请 SEQLIST_INIT_SIZE 个数的  ElemType 类型长度的空间，将指针变量（地址值）赋给 SeqList 类型的变量的成员变量（指针变量）*data

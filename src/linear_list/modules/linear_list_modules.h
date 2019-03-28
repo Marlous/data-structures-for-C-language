@@ -17,9 +17,9 @@
 /* 顺序表的定义 */
 typedef struct{
 	ElemType *data; // 指示动态分配数组的指针
-	int       max_size; // 储存元素的数组的最大容量
-	int       length; // 当前的长度（当前存储数据元素的个数）
-}seqlist_s;
+	int max_size; // 储存元素的数组的最大容量
+	int length; // 当前的长度（当前存储数据元素的个数）
+}seq_list_s;
 
 
 /* 单链表的定义 */
