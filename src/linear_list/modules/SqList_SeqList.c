@@ -133,7 +133,7 @@ Status InitList(seq_list_s *L) // 接收一个定义好的变量的地址（实�
 
 	if(L->data == NULL) // 如果分配失败（malloc 函数分配失败返回 NULL）则退出
 	{
-		exit(1);
+		return ERROR;
 	}
 
 	L->max_size = SEQLIST_INIT_SIZE; // 初始化表容量为 SEQLIST_INIT_SIZE
