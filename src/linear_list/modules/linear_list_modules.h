@@ -11,6 +11,7 @@
 
 
 #define ElemType char // 将元素类型定义为字符型
+#define LIST_INCREMENT 1 // 容量增加的量
 #define SEQLIST_INIT_SIZE 100 // 顺序表，初始化容量。动态分配一维数组（本程序省略静态分配的，只用动态分配的）
 
 

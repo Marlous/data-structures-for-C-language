@@ -45,7 +45,9 @@ Status DisplayCopyrightInfo(void)
 
 	printf("# # # # # # # # # # # # # # # # # #\n");
 	printf("# Data Structures for C language  #\n");
+	printf("#                                 #\n");
 	printf("# Copyright (c) Marlous %d      #\n", 1900 + p->tm_year);
+	printf("# Contact:Goonecat@foxmail.com    #\n");
 	printf("# # # # # # # # # # # # # # # # # #\n");
 
 	return OK;
