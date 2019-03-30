@@ -58,6 +58,7 @@ Status DisplaySqListSeqListMenu(void)
 Status SqListSeqListMenuSelect(void)
 {
 	seq_list_s listcase; // 定义一个顺序表类型的变量 listcase
+	listcase.data = NULL; // 先初始化为 NULL，表示还没进行任何操作，顺序表实例还不存在
 
 	while(TRUE)
 	{
@@ -158,16 +159,19 @@ Status DestroyList(seq_list_s *L)
 /* 顺序表的插入 */
 Status ListInsert(seq_list_s *L, int i, ElemType e) // 顺序线性表已存在，在 i 位置插入元素数据元素 e，长度加一，从后向前逐个移动之后和 i 位置的元素
 {
+	if(L->data == NULL) // 顺序表实例不存在，则返回错误
+	{
+		return ERROR;
+	}
+
 	ElemType *newbase, *q, *p; // newbase 为新分配的地址。 q 为插入的位置，p 为最后一个元素的位置。p 一直减到  q 的位置
 
-	if(L->length != L->max_size) // 顺序表没满
-	{
-		if(i < 1 || i > L->length) // 插入位置不合法
+	if(i < 1 || i > L->length + 1) // 插入位置不合法，i 应该大于等于 1 且 小于等于 length + 1
 		{
 			return ERROR;
 		}
-	}
-	else if(L->length == L->max_size) // 顺序表已满，需要增加存储容量
+
+	if(L->length == L->max_size) // 顺序表已满，需要增加存储容量
 	{
 		newbase = (ElemType *)realloc(L->data, (L->max_size + LIST_INCREMENT) * sizeof(ElemType)); // 重新分配更多的容量
 		if(newbase == NULL)
@@ -184,7 +188,7 @@ Status ListInsert(seq_list_s *L, int i, ElemType e) // 顺序线性表已存在�
 	q = L->data + i - 1; // 算出 q 插入位置的地址。p 是最后一个元素的位置
 	for(p = L->data + L->length -1; p >= q; p--) // 从最后一个元素开始，一个一个向后移动，直到将插入位置上的元素移到后一个，空出来插入位置
 	{
-		*(p + 1) = *p;
+		*(p + 1) = *p;  // 插入位置 q 在最后一个元素 p 之前，才执行此代码，即 p >= q
 	}
 
 	*q = e; // 插入元素
