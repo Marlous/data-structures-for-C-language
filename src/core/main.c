@@ -38,7 +38,7 @@ int main(void)
 Status DisplayCopyrightInfo(void)
 {
 	struct tm *p;
-	time_t     timep;
+	time_t timep;
 
 	time(&timep);
 	p = gmtime(&timep);
