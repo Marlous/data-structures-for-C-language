@@ -61,6 +61,8 @@ Status SqListSeqListMenuSelect(void)
 {
 	seq_list_s listcase; // 定义一个顺序表类型的变量 listcase
 	listcase.data = NULL; // 先初始化为 NULL，表示还没进行任何操作，顺序表实例还不存在
+	int i;
+	ElemType e;
 
 	while(TRUE)
 	{
@@ -93,10 +95,8 @@ Status SqListSeqListMenuSelect(void)
 				}
 				break;
 
-			case '3': // 顺序表的插入。插入一次只插入一个元素，依次添加进顺序表
+			case '3': // 顺序表的插入。按位置插入。插入一次只插入一个元素，依次添加进顺序表
 				printf("Please enter i and e to insert:");
-				int i;
-				ElemType e;
 				scanf("%d %c", &i, &e);
 				getchar();
 				if(ListInsert(&listcase, i, e) == OK)
@@ -106,6 +106,20 @@ Status SqListSeqListMenuSelect(void)
 				else
 				{
 					printf("ListInsert false!\n");
+				}
+				break;
+
+			case '4': // 顺序表的元素删除。按位置删除
+				printf("Please enter i to delete:");
+				scanf("%d", &i);
+				getchar();
+				if(ListDelete(&listcase, i, &e) == OK)
+				{
+					printf("ListDelete successes! Deleted %c !\n", e);
+				}
+				else
+				{
+					printf("ListDelete false!\n");
 				}
 				break;
 
