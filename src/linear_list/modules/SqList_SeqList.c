@@ -123,6 +123,21 @@ Status SqListSeqListMenuSelect(void)
 				}
 				break;
 
+			case '5': // 顺序表按值查找
+				printf("Please enter e to locate:");
+				scanf("%c", &e);
+				getchar();
+				i = LocateElem(listcase, e);
+				if(i != 0)
+				{
+					printf("LocateElem successes! i is %d !\n", i);
+				}
+				else
+				{
+					printf("LocateElem false!\n");
+				}
+				break;
+
 			case 'b':
 				LinearList();
 				break;
@@ -187,7 +202,7 @@ Status ListInsert(seq_list_s *L, int i, ElemType e) // 顺序线性表已存在�
 		return ERROR;
 	}
 
-	if(L->length == L->max_size) // 顺序表已满，需要增加存储容量
+	if(L->length == L->max_size) // 顺序表已满，需要增加存储容量（会自动复制原内存中的数据到新的地址）
 	{
 		newbase = (ElemType *)realloc(L->data, (L->max_size + LIST_INCREMENT) * sizeof(ElemType)); // 重新分配更多的容量
 		if(newbase == NULL)
@@ -244,5 +259,28 @@ Status ListDelete(seq_list_s *L, int i, ElemType *e) // 顺序表已存在，删
 /* 顺序表按值查找 */
 int LocateElem(seq_list_s L, ElemType e) // 找到（第一个符合的）返回位置，没找到返回 0
 {
-	return OK;
+	int site; // 类似于数组下标位置，从 0 开始
+	int i; // i 为元素的位置
+
+	if(L.data == NULL)
+	{
+		return 0;
+	}
+
+	for(site = 0; site < L.length; site++)
+	{
+		if(*(L.data + site) == e)
+		{
+			i = site + 1;
+			return i;
+		}
+		else if((site + 1) != L.length)
+		{
+			continue;
+		}
+		else
+		{
+			return 0;
+		}
+	}
 }
