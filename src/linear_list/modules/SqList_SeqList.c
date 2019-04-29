@@ -15,11 +15,12 @@ Status DisplaySqListSeqListMenu(void);
 Status SqListSeqListMenuSelect(void);
 
 
-Status InitList(seq_list_s *L);
-Status DestroyList(seq_list_s *L);
-Status ListInsert(seq_list_s *L, int i, ElemType e);
-Status ListDelete(seq_list_s *L, int i, ElemType *e);
-int LocateElem(seq_list_s L, ElemType e);
+Status InitList(seq_list_s *L); // 初始化一个空的线性表
+Status DestroyList(seq_list_s *L); // 销毁操作
+Status ListInsert(seq_list_s *L, int i, ElemType e); // 按位置插入操作
+Status ListDelete(seq_list_s *L, int i, ElemType *e); // 删除某位置操作，删除的元素赋给 e 变量
+int LocateElem(seq_list_s L, ElemType e); // 按值查找
+Status GetElem(seq_list_s L, int i, ElemType *e); // 按位置查找，找到的元素赋给 e 变量
 
 
 /*
@@ -135,6 +136,20 @@ Status SqListSeqListMenuSelect(void)
 				else
 				{
 					printf("LocateElem false!\n");
+				}
+				break;
+
+			case '6': // 顺序表按位置查找
+				printf("Please enter i to get element:");
+				scanf("%d", &i);
+				getchar();
+				if(GetElem(listcase, i, &e) == OK)
+				{
+					printf("GetElem success! e is %c !\n", e);
+				}
+				else
+				{
+					printf("GetElem false!\n");
 				}
 				break;
 
@@ -283,4 +298,22 @@ int LocateElem(seq_list_s L, ElemType e) // 找到（第一个符合的）返回
 			return 0;
 		}
 	}
+}
+
+/* 顺序表按位置查找 */
+Status GetElem(seq_list_s L, int i, ElemType *e)
+{
+	if(L.data == NULL)
+	{
+		return ERROR;
+	}
+
+	if(i < 1 || i > L.length)
+	{
+		return ERROR;
+	}
+
+	*e = *(L.data + i - 1);
+
+	return OK;
 }
