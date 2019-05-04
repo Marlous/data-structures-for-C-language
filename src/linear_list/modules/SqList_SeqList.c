@@ -14,7 +14,6 @@
 Status DisplaySqListSeqListMenu(void);
 Status SqListSeqListMenuSelect(void);
 
-
 Status InitList(seq_list_s *L); // 初始化一个空的线性表
 Status DestroyList(seq_list_s *L); // 销毁操作
 Status ListInsert(seq_list_s *L, int i, ElemType e); // 按位置插入操作
