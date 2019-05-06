@@ -14,7 +14,8 @@
 Status DisplayLNodeMenu(void);
 Status LNodeMenuSelect(void);
 
-l_node_s *CreateList();
+Status CreateList(l_node_s *L); // 单链表的头节点创建（创建一个头节点，将头节点地址赋给单链表指针变量）
+Status HeadInsert(l_node_s *L); // 单链表的多个节点创建并插入（头插法）
 
 
 /*
@@ -60,8 +61,7 @@ Status LNodeMenuSelect(void)
 		switch(selectnum)
 		{
 			case '1': // 单链表的头节点创建（创建一个头节点，将头节点地址赋给单链表指针变量）
-				listcase = CreateList();
-				if(listcase != NULL)
+				if(CreateList(&listcase) == OK)
 				{
 					printf("CreateList successed!");
 				}
@@ -71,10 +71,18 @@ Status LNodeMenuSelect(void)
 				}
 				break;
 
-			case '2': // 单链表的某个节点创建并插入（头插法）
+			case '2': // 单链表的多个节点创建并插入（头插法）
+				if(HeadInsert(&listcase) == OK)
+				{
+					printf("HeadInsert successed!");
+				}
+				else
+				{
+					printf("HeadInsert false!");
+				}
 				break;
 
-			case '3': // 单链表的某个节点创建并插入（尾插法）
+			case '3': // 单链表的多个节点创建并插入（尾插法）
 				break;
 
 			case '4': // 单链表的某个节点创建并插入到指定位置
@@ -98,17 +106,47 @@ Status LNodeMenuSelect(void)
 
 
 /* 单链表的头节点创建（创建一个头节点，将头节点地址赋给单链表指针变量） */
-l_node_s *CreateList()
+Status CreateList(l_node_s *L)
 {
-	l_node_s *node;
-	node = (l_node_s *)malloc(sizeof(l_node_s));
-	if(node != NULL)
+	*L = (l_node_s *)malloc(sizeof(l_node_s));
+	if(*L != NULL)
 	{
-		node->next = NULL;
+		*L->next = NULL;
+		return OK;
+	}
+	else
+	{
+		return ERROR;
+	}
+}
+
+
+/* 单链表的多个节点创建并插入（头插法） */
+Status HeadInsert(l_node_s *L)  // 传入的是单链表头节点指针的地址
+{
+	l_node_s *one_node;
+	ElemType e;
+
+	printf("Please enter e, enter \'q\' to end input!");
+	scanf("%c", &e);
+	getchar();
+	while(e != 'q')
+	{
+		one_node = (l_node_s *)malloc(sizeof(l_node_s));
+		one_node->data = e;
+		one_node->next = *L->next; // 将头节点的 next 域赋给往头节点后面插入的节点
+		*L->next = one_node; // 将插入节点的地址赋给头节点的 next 域
+
+		scanf("%c", &e);
+		getchar();
 	}
 
-	return node; // 返回存放头节点地址的指针变量
+	return OK;
 }
+
+
+
+
 
 
 /* 单链表的销毁 */
