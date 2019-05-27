@@ -16,6 +16,7 @@ Status LNodeMenuSelect(void);
 
 Status CreateList(l_node_s *L); // 单链表的头节点创建（创建一个头节点，将头节点地址赋给单链表指针变量）
 Status HeadInsert(l_node_s *L); // 单链表的多个节点创建并插入（头插法）
+Status FootInsert(l_node_s *L); // 单链表的多个节点创建并插入（尾插法）
 
 
 /*
@@ -38,6 +39,10 @@ Status DisplayLNodeMenu(void)
 {
 	printf("# LNode #\n");
 	printf("# 1 CreateList()\n");
+	printf("# 2 HeadInsert(l_node_s *L)\n");
+	printf("# 3 FootInsert(l_node_s *L)\n");
+
+
 
 	printf("# b Back!\n");
 	printf("# q Exit!\n");
@@ -83,6 +88,7 @@ Status LNodeMenuSelect(void)
 				break;
 
 			case '3': // 单链表的多个节点创建并插入（尾插法）
+
 				break;
 
 			case '4': // 单链表的某个节点创建并插入到指定位置
@@ -143,6 +149,15 @@ Status HeadInsert(l_node_s *L)  // 传入的是单链表头节点指针的地址
 
 	return OK;
 }
+
+
+/* 单链表的多个节点创建并插入（尾插法） */
+Status FootInsert(l_node_s *L)  // 传入的是单链表头节点指针的地址
+{
+
+}
+
+
 
 
 

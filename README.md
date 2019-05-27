@@ -30,7 +30,8 @@
 
 ## Support - 支持
 ### Contact - 联系
-邮箱：Goonecat@foxmail.com
+- By Marlous
+- 邮箱：Goonecat@foxmail.com
 
 ## License - 版权信息
 Data Structures For C Language is released under the GPL license. See [LICENSE](https://github.com/Marlous/Data-Structures-For-C-Language/blob/master/LICENSE) for additional details.
