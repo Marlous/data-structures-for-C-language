@@ -88,7 +88,14 @@ Status LNodeMenuSelect(void)
 				break;
 
 			case '3': // 单链表的多个节点创建并插入（尾插法）
-
+				if(FootInsert(&listcase) == OK)
+				{
+					printf("FootInsert successed!");
+				}
+				else
+				{
+					printf("FootInsert false!");
+				}
 				break;
 
 			case '4': // 单链表的某个节点创建并插入到指定位置
@@ -136,6 +143,7 @@ Status HeadInsert(l_node_s *L)  // 传入的是单链表头节点指针的地址
 	printf("Please enter e, enter \'q\' to end input!");
 	scanf("%c", &e);
 	getchar();
+
 	while(e != 'q')
 	{
 		one_node = (l_node_s *)malloc(sizeof(l_node_s));
@@ -154,8 +162,38 @@ Status HeadInsert(l_node_s *L)  // 传入的是单链表头节点指针的地址
 /* 单链表的多个节点创建并插入（尾插法） */
 Status FootInsert(l_node_s *L)  // 传入的是单链表头节点指针的地址
 {
+	l_node_s *one_node;
+	ElemType e;
 
+	printf("Please enter e, enter \'q\' to end input!");
+	scanf("%c", &e);
+	getchar();
+
+	while(e != 'q')
+	{
+		one_node = (l_node_s *)malloc(sizeof(l_node_s));
+		one_node->data = e;
+		one_node->next = NULL;
+
+		l_node_s *end_node;
+		end_node = L; // 先将头节点当作是最后一个节点
+		while(end_node->next != NULL) // 如果不是最后一个节点的话
+		{
+			end_node = end_node->next; // 将下一个节点当作是最后一个节点
+		}
+
+		end_node->next = one_node; // 将此节点地址赋给最后一个节点的指针域
+
+		scanf("%c", &e);
+		getchar();
+	}
+
+	return OK;
 }
+
+
+
+
 
 
 
