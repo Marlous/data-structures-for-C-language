@@ -98,10 +98,22 @@ Status LNodeMenuSelect(void)
 				}
 				break;
 
-			case '4': // 单链表的某个节点创建并插入到指定位置
+			case '4': // 单链表的插入节点
 				break;
 
-			case '5': // 单链表的销毁
+			case '5': // 单链表的删除节点
+				break;
+
+			case '6': // 单链表的按序号查找节点
+				break;
+
+			case '7': // 单链表的按值查找节点
+				break;
+
+			case '8': // 单链表的求表长
+				break;
+
+			case '9': // 单链表的销毁
 				if(DestroyList(&listcase) == OK)
 				{
 					printf("DestroyList successes!\n");
