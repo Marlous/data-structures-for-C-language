@@ -14,12 +14,15 @@
 Status DisplaySqListSeqListMenu(void);
 Status SqListSeqListMenuSelect(void);
 
-
-Status InitList(seq_list_s *L);
-Status DestroyList(seq_list_s *L);
-Status ListInsert(seq_list_s *L, int i, ElemType e);
-Status ListDelete(seq_list_s *L, int i, ElemType *e);
-int LocateElem(seq_list_s L, ElemType e);
+Status InitList(seq_list_s *L); // 初始化一个空的线性表
+Status DestroyList(seq_list_s *L); // 销毁操作
+Status ListInsert(seq_list_s *L, int i, ElemType e); // 按位置插入操作
+Status ListDelete(seq_list_s *L, int i, ElemType *e); // 删除某位置操作，删除的元素赋给 e 变量
+int LocateElem(seq_list_s L, ElemType e); // 按值查找
+Status GetElem(seq_list_s L, int i, ElemType *e); // 按位置查找，找到的元素赋给 e 变量
+Status Length(seq_list_s L); // 求长度
+Status Empty(seq_list_s L); // 判空
+Status PrintList(seq_list_s L); // 打印顺序表元素
 
 
 /*
@@ -61,6 +64,9 @@ Status SqListSeqListMenuSelect(void)
 {
 	seq_list_s listcase; // 定义一个顺序表类型的变量 listcase
 	listcase.data = NULL; // 先初始化为 NULL，表示还没进行任何操作，顺序表实例还不存在
+	int i;
+	ElemType e;
+	int length;
 
 	while(TRUE)
 	{
@@ -93,10 +99,8 @@ Status SqListSeqListMenuSelect(void)
 				}
 				break;
 
-			case '3': // 顺序表的插入。插入一次只插入一个元素，依次添加进顺序表
+			case '3': // 顺序表的插入。按位置插入。插入一次只插入一个元素，依次添加进顺序表
 				printf("Please enter i and e to insert:");
-				int i;
-				ElemType e;
 				scanf("%d %c", &i, &e);
 				getchar();
 				if(ListInsert(&listcase, i, e) == OK)
@@ -108,6 +112,82 @@ Status SqListSeqListMenuSelect(void)
 					printf("ListInsert false!\n");
 				}
 				break;
+
+			case '4': // 顺序表的元素删除。按位置删除
+				printf("Please enter i to delete:");
+				scanf("%d", &i);
+				getchar();
+				if(ListDelete(&listcase, i, &e) == OK)
+				{
+					printf("ListDelete successes! Deleted %c !\n", e);
+				}
+				else
+				{
+					printf("ListDelete false!\n");
+				}
+				break;
+
+			case '5': // 顺序表按值查找
+				printf("Please enter e to locate:");
+				scanf("%c", &e);
+				getchar();
+				i = LocateElem(listcase, e);
+				if(i != 0)
+				{
+					printf("LocateElem successes! i is %d !\n", i);
+				}
+				else
+				{
+					printf("LocateElem false!\n");
+				}
+				break;
+
+			case '6': // 顺序表按位置查找
+				printf("Please enter i to get element:");
+				scanf("%d", &i);
+				getchar();
+				if(GetElem(listcase, i, &e) != ERROR)
+				{
+					printf("GetElem success! e is %c !\n", e);
+				}
+				else
+				{
+					printf("GetElem false!\n");
+				}
+				break;
+
+			case '7': // 顺序表求长
+				length = Length(listcase);
+				if(length != ERROR)
+				{
+					printf("Length: %d\n", length);
+				}
+				else
+				{
+					printf("L Not exist!\n");
+				}
+				break;
+
+			case '8': // 顺序表判空
+				if(Empty(listcase) == OK)
+				{
+					printf("L not empty!\n");
+				}
+				else
+				{
+					printf("L is empty or not exist!\n");
+				}
+				break;
+
+			case '9': // 打印顺序表元素
+				if(PrintList(listcase) != ERROR)
+				{
+				}
+				else
+				{
+					printf("L not exist!\n");
+				}
+			    break;
 
 			case 'b':
 				LinearList();
@@ -173,7 +253,7 @@ Status ListInsert(seq_list_s *L, int i, ElemType e) // 顺序线性表已存在�
 		return ERROR;
 	}
 
-	if(L->length == L->max_size) // 顺序表已满，需要增加存储容量
+	if(L->length == L->max_size) // 顺序表已满，需要增加存储容量（会自动复制原内存中的数据到新的地址）
 	{
 		newbase = (ElemType *)realloc(L->data, (L->max_size + LIST_INCREMENT) * sizeof(ElemType)); // 重新分配更多的容量
 		if(newbase == NULL)
@@ -230,5 +310,104 @@ Status ListDelete(seq_list_s *L, int i, ElemType *e) // 顺序表已存在，删
 /* 顺序表按值查找 */
 int LocateElem(seq_list_s L, ElemType e) // 找到（第一个符合的）返回位置，没找到返回 0
 {
+	int site; // 类似于数组下标位置，从 0 开始
+	int i; // i 为元素的位置
+
+	if(L.data == NULL)
+	{
+		return ERROR;
+	}
+
+	for(site = 0; site < L.length; site++)
+	{
+		if(*(L.data + site) == e)
+		{
+			i = site + 1;
+			return i;
+		}
+		else if((site + 1) != L.length)
+		{
+			continue;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+	return OK;
+}
+
+
+/* 顺序表按位置查找 */
+Status GetElem(seq_list_s L, int i, ElemType *e)
+{
+	if(L.data == NULL)
+	{
+		return ERROR;
+	}
+
+	if(i < 1 || i > L.length)
+	{
+		return ERROR;
+	}
+
+	*e = *(L.data + i - 1);
+
+	return OK;
+}
+
+
+/* 顺序表求长 */
+Status Length(seq_list_s L)
+{
+	if(L.data == NULL)
+	{
+		return ERROR;
+	}
+	else
+	{
+		return L.length;
+	}
+
+	return OK;
+}
+
+
+/* 顺序表判空 */
+Status Empty(seq_list_s L)
+{
+	if(L.data == NULL)
+	{
+		return ERROR;
+	}
+
+	if(L.length != 0)
+	{
+		return OK;
+	}
+	else
+	{
+		return ERROR;
+	}
+}
+
+
+/* 打印顺序表 */
+Status PrintList(seq_list_s L)
+{
+	int site;
+
+	if(L.data == NULL)
+	{
+		return ERROR;
+	}
+
+	for(site = 0; site < L.length; site++)
+	{
+		printf("%c, ", *(L.data + site));
+	}
+	printf("\n");
+
 	return OK;
 }
