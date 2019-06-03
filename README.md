@@ -1,6 +1,6 @@
 # Data Structures For C Language
 ## Introduction - 介绍
-数据结构 C 语言版（Exercise Project）。
+数据结构 C 语言版（命令行菜单程序）。
 
 ### Summary - 概要
 数据结构内容详见 docs 文件夹内的文档。
@@ -28,10 +28,15 @@
 - IDE：Eclipse Cpp 2018-09
 - Compiler：GNU GCC v6.3.0
 
+## Usage - 用法
+- 命令行下运行程序。
+- 然后根据菜单选择对应的功能。  
+![用法](readme_img/图1.gif)
+
 ## Support - 支持
 ### Contact - 联系
 - By Marlous
-- 邮箱：Goonecat@foxmail.com
+- E-mail：Goonecat@foxmail.com
 
 ## License - 版权信息
 Data Structures For C Language is released under the GPL license. See [LICENSE](https://github.com/Marlous/Data-Structures-For-C-Language/blob/master/LICENSE) for additional details.
