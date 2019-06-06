@@ -14,15 +14,17 @@
 Status DisplayLNodeMenu(void);
 Status LNodeMenuSelect(void);
 
-Status CreateList(l_node_s *L); // 单链表的头节点创建（创建一个头节点，将头节点地址赋给单链表指针变量）
-Status HeadInsert(l_node_s *L); // 单链表的多个节点创建并插入（头插法）
-Status FootInsert(l_node_s *L); // 单链表的多个节点创建并插入（尾插法）
+Status CreateList_LNode(l_node_s *L); // 单链表的头节点创建（创建一个头节点，将头节点地址赋给单链表指针变量）
+Status HeadInsert_LNode(l_node_s *L); // 单链表的多个节点创建并插入（头插法）
+Status FootInsert_LNode(l_node_s *L); // 单链表的多个节点创建并插入（尾插法）
+l_node_s *GetElem_LNode(l_node_s *L, int i);
+int Length_LNode(l_node_s *L);
 
 
 /*
  * Main function
  */
-Status SqListSeqList(void)
+Status LNode(void)
 {
 	system("cls");
 	DisplayLNodeMenu();
@@ -66,7 +68,7 @@ Status LNodeMenuSelect(void)
 		switch(selectnum)
 		{
 			case '1': // 单链表的头节点创建（创建一个头节点，将头节点地址赋给单链表指针变量）
-				if(CreateList(&listcase) == OK)
+				if(CreateList_LNode(listcase) == OK)
 				{
 					printf("CreateList successed!");
 				}
@@ -77,7 +79,7 @@ Status LNodeMenuSelect(void)
 				break;
 
 			case '2': // 单链表的多个节点创建并插入（头插法）
-				if(HeadInsert(&listcase) == OK)
+				if(HeadInsert_LNode(listcase) == OK)
 				{
 					printf("HeadInsert successed!");
 				}
@@ -88,7 +90,7 @@ Status LNodeMenuSelect(void)
 				break;
 
 			case '3': // 单链表的多个节点创建并插入（尾插法）
-				if(FootInsert(&listcase) == OK)
+				if(FootInsert_LNode(listcase) == OK)
 				{
 					printf("FootInsert successed!");
 				}
@@ -98,30 +100,22 @@ Status LNodeMenuSelect(void)
 				}
 				break;
 
-			case '4': // 单链表的插入节点
+			case '4': // 单链表的按序号查找节点
 				break;
 
-			case '5': // 单链表的删除节点
+			case '5': // 单链表的按值查找节点
 				break;
 
-			case '6': // 单链表的按序号查找节点
+			case '6': // 单链表的插入节点
 				break;
 
-			case '7': // 单链表的按值查找节点
+			case '7': // 单链表的删除节点
 				break;
 
 			case '8': // 单链表的求表长
 				break;
 
 			case '9': // 单链表的销毁
-				if(DestroyList(&listcase) == OK)
-				{
-					printf("DestroyList successes!\n");
-				}
-				else
-				{
-					printf("DestroyList false!\n");
-				}
 				break;
 		}
 
@@ -131,12 +125,14 @@ Status LNodeMenuSelect(void)
 
 
 /* 单链表的头节点创建（创建一个头节点，将头节点地址赋给单链表指针变量） */
-Status CreateList(l_node_s *L)
+Status CreateList_LNode(l_node_s *L)
 {
-	*L = (l_node_s *)malloc(sizeof(l_node_s));
-	if(*L != NULL)
+	l_node_s *head_node;
+	head_node = (l_node_s *)malloc(sizeof(l_node_s));
+	L = head_node;
+	if(L != NULL)
 	{
-		*L->next = NULL;
+		L->next = NULL;
 		return OK;
 	}
 	else
@@ -147,7 +143,7 @@ Status CreateList(l_node_s *L)
 
 
 /* 单链表的多个节点创建并插入（头插法） */
-Status HeadInsert(l_node_s *L)  // 传入的是单链表头节点指针的地址
+Status HeadInsert_LNode(l_node_s *L)
 {
 	l_node_s *one_node;
 	ElemType e;
@@ -160,8 +156,8 @@ Status HeadInsert(l_node_s *L)  // 传入的是单链表头节点指针的地址
 	{
 		one_node = (l_node_s *)malloc(sizeof(l_node_s));
 		one_node->data = e;
-		one_node->next = *L->next; // 将头节点的 next 域赋给往头节点后面插入的节点
-		*L->next = one_node; // 将插入节点的地址赋给头节点的 next 域
+		one_node->next = L->next; // 将头节点的 next 域赋给往头节点后面插入的节点
+		L->next = one_node; // 将插入节点的地址赋给头节点的 next 域
 
 		scanf("%c", &e);
 		getchar();
@@ -172,7 +168,7 @@ Status HeadInsert(l_node_s *L)  // 传入的是单链表头节点指针的地址
 
 
 /* 单链表的多个节点创建并插入（尾插法） */
-Status FootInsert(l_node_s *L)  // 传入的是单链表头节点指针的地址
+Status FootInsert_LNode(l_node_s *L)
 {
 	l_node_s *one_node;
 	ElemType e;
@@ -204,6 +200,39 @@ Status FootInsert(l_node_s *L)  // 传入的是单链表头节点指针的地址
 }
 
 
+/* 单链表的按序号查找节点 */
+l_node_s *GetElem_LNode(l_node_s *L, int i) // 传入指针变量即可，找到返回节点地址
+{
+	l_node_s *p;
+	int j;
+
+	if(i >= 1 && i <= Length_LNode(L)) // 位置值合法
+	{
+		for(j = 1; j <= i; j++)
+			{
+				if(j == 1)
+				{
+					p = L->next;
+				}
+				if(p->next != NULL)
+				{
+					p = p->next;
+				}
+			}
+		return p;
+	}
+	else // 位置值不合法
+	{
+		return NULL;
+	}
+}
+
+
+/* 单链表的按值查找节点 */
+
+
+
+
 /* 单链表的插入节点 */
 
 
@@ -212,16 +241,25 @@ Status FootInsert(l_node_s *L)  // 传入的是单链表头节点指针的地址
 
 
 
-/* 单链表的按序号查找节点 */
-
-
-
-/* 单链表的按值查找节点 */
-
-
-
 /* 单链表的求表长 */
+int Length_LNode(l_node_s *L)
+{
+	l_node_s *p;
+	int count = 0;
 
+	if(L->next != NULL)
+	{
+		count = 1;
+		p = L->next;
+	}
+	while(p->next != NULL)
+	{
+		count = count + 1;
+		p = L->next;
+	}
+
+	return count;
+}
 
 
 /* 单链表的销毁 */

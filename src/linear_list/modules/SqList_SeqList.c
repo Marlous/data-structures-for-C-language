@@ -14,15 +14,15 @@
 Status DisplaySqListSeqListMenu(void);
 Status SqListSeqListMenuSelect(void);
 
-Status InitList(seq_list_s *L); // 初始化一个空的线性表
-Status DestroyList(seq_list_s *L); // 销毁操作
-Status ListInsert(seq_list_s *L, int i, ElemType e); // 按位置插入操作
-Status ListDelete(seq_list_s *L, int i, ElemType *e); // 删除某位置操作，删除的元素赋给 e 变量
-int LocateElem(seq_list_s L, ElemType e); // 按值查找
-Status GetElem(seq_list_s L, int i, ElemType *e); // 按位置查找，找到的元素赋给 e 变量
-Status Length(seq_list_s L); // 求长度
-Status Empty(seq_list_s L); // 判空
-Status PrintList(seq_list_s L); // 打印顺序表元素
+Status InitList_SeqList(seq_list_s *L); // 初始化一个空的线性表
+Status DestroyList_SeqList(seq_list_s *L); // 销毁操作
+Status ListInsert_SeqList(seq_list_s *L, int i, ElemType e); // 按位置插入操作
+Status ListDelete_SeqList(seq_list_s *L, int i, ElemType *e); // 删除某位置操作，删除的元素赋给 e 变量
+int LocateElem_SeqList(seq_list_s L, ElemType e); // 按值查找
+Status GetElem_SeqList(seq_list_s L, int i, ElemType *e); // 按位置查找，找到的元素赋给 e 变量
+Status Length_SeqList(seq_list_s L); // 求长度
+Status Empty_SeqList(seq_list_s L); // 判空
+Status PrintList_SeqList(seq_list_s L); // 打印顺序表元素
 
 
 /*
@@ -78,7 +78,7 @@ Status SqListSeqListMenuSelect(void)
 		switch(selectnum)
 		{
 			case '1': // 初始化顺序表
-				if(InitList(&listcase) == OK)
+				if(InitList_SeqList(&listcase) == OK)
 				{
 					printf("InitList successes!\n");
 				}
@@ -89,7 +89,7 @@ Status SqListSeqListMenuSelect(void)
 				break;
 
 			case '2': // 销毁顺序表
-				if(DestroyList(&listcase) == OK)
+				if(DestroyList_SeqList(&listcase) == OK)
 				{
 					printf("DestroyList successes!\n");
 				}
@@ -103,7 +103,7 @@ Status SqListSeqListMenuSelect(void)
 				printf("Please enter i and e to insert:");
 				scanf("%d %c", &i, &e);
 				getchar();
-				if(ListInsert(&listcase, i, e) == OK)
+				if(ListInsert_SeqList(&listcase, i, e) == OK)
 				{
 					printf("ListInsert successes!\n");
 				}
@@ -117,7 +117,7 @@ Status SqListSeqListMenuSelect(void)
 				printf("Please enter i to delete:");
 				scanf("%d", &i);
 				getchar();
-				if(ListDelete(&listcase, i, &e) == OK)
+				if(ListDelete_SeqList(&listcase, i, &e) == OK)
 				{
 					printf("ListDelete successes! Deleted %c !\n", e);
 				}
@@ -131,7 +131,7 @@ Status SqListSeqListMenuSelect(void)
 				printf("Please enter e to locate:");
 				scanf("%c", &e);
 				getchar();
-				i = LocateElem(listcase, e);
+				i = LocateElem_SeqList(listcase, e);
 				if(i != 0)
 				{
 					printf("LocateElem successes! i is %d !\n", i);
@@ -146,7 +146,7 @@ Status SqListSeqListMenuSelect(void)
 				printf("Please enter i to get element:");
 				scanf("%d", &i);
 				getchar();
-				if(GetElem(listcase, i, &e) != ERROR)
+				if(GetElem_SeqList(listcase, i, &e) != ERROR)
 				{
 					printf("GetElem success! e is %c !\n", e);
 				}
@@ -157,7 +157,7 @@ Status SqListSeqListMenuSelect(void)
 				break;
 
 			case '7': // 顺序表求长
-				length = Length(listcase);
+				length = Length_SeqList(listcase);
 				if(length != ERROR)
 				{
 					printf("Length: %d\n", length);
@@ -169,7 +169,7 @@ Status SqListSeqListMenuSelect(void)
 				break;
 
 			case '8': // 顺序表判空
-				if(Empty(listcase) == OK)
+				if(Empty_SeqList(listcase) == OK)
 				{
 					printf("L not empty!\n");
 				}
@@ -180,7 +180,7 @@ Status SqListSeqListMenuSelect(void)
 				break;
 
 			case '9': // 打印顺序表元素
-				if(PrintList(listcase) != ERROR)
+				if(PrintList_SeqList(listcase) != ERROR)
 				{
 				}
 				else
@@ -208,7 +208,7 @@ Status SqListSeqListMenuSelect(void)
 
 
 /* 顺序表的初始化 */
-Status InitList(seq_list_s *L) // 接收一个定义好的变量的地址（实参是变量的地址，形参是指针变量）
+Status InitList_SeqList(seq_list_s *L) // 接收一个定义好的变量的地址（实参是变量的地址，形参是指针变量）
 {
 	L->data = NULL; // 先将成员体变量 data 初始化。这里 L 前的星号表示引用实参 listcase 变量
 	L->data = (ElemType *)malloc(SEQLIST_INIT_SIZE * sizeof(ElemType)); // 申请 SEQLIST_INIT_SIZE 个数的  ElemType 类型长度的空间，将指针变量（地址值）赋给 SeqList 类型的变量的成员变量（指针变量）*data
@@ -226,7 +226,7 @@ Status InitList(seq_list_s *L) // 接收一个定义好的变量的地址（实�
 
 
 /* 顺序表的销毁 */
-Status DestroyList(seq_list_s *L)
+Status DestroyList_SeqList(seq_list_s *L)
 {
 	free(L->data);
 
@@ -239,7 +239,7 @@ Status DestroyList(seq_list_s *L)
 
 
 /* 顺序表的插入 */
-Status ListInsert(seq_list_s *L, int i, ElemType e) // 顺序线性表已存在，在 i 位置插入元素数据元素 e，长度加一，从后向前逐个移动之后和 i 位置的元素
+Status ListInsert_SeqList(seq_list_s *L, int i, ElemType e) // 顺序线性表已存在，在 i 位置插入元素数据元素 e，长度加一，从后向前逐个移动之后和 i 位置的元素
 {
 	if(L->data == NULL) // 顺序表实例不存在，则返回错误
 	{
@@ -281,7 +281,7 @@ Status ListInsert(seq_list_s *L, int i, ElemType e) // 顺序线性表已存在�
 
 
 /* 顺序表的删除 */
-Status ListDelete(seq_list_s *L, int i, ElemType *e) // 顺序表已存在，删除 i 位置元素值。与插入操作正好相反。被删除的元素值赋给 e
+Status ListDelete_SeqList(seq_list_s *L, int i, ElemType *e) // 顺序表已存在，删除 i 位置元素值。与插入操作正好相反。被删除的元素值赋给 e
 {
 	if(L->data == NULL) // 顺序表不存在返回错误
 	{
@@ -308,7 +308,7 @@ Status ListDelete(seq_list_s *L, int i, ElemType *e) // 顺序表已存在，删
 
 
 /* 顺序表按值查找 */
-int LocateElem(seq_list_s L, ElemType e) // 找到（第一个符合的）返回位置，没找到返回 0
+int LocateElem_SeqList(seq_list_s L, ElemType e) // 找到（第一个符合的）返回位置，没找到返回 0
 {
 	int site; // 类似于数组下标位置，从 0 开始
 	int i; // i 为元素的位置
@@ -340,7 +340,7 @@ int LocateElem(seq_list_s L, ElemType e) // 找到（第一个符合的）返回
 
 
 /* 顺序表按位置查找 */
-Status GetElem(seq_list_s L, int i, ElemType *e)
+Status GetElem_SeqList(seq_list_s L, int i, ElemType *e)
 {
 	if(L.data == NULL)
 	{
@@ -359,7 +359,7 @@ Status GetElem(seq_list_s L, int i, ElemType *e)
 
 
 /* 顺序表求长 */
-Status Length(seq_list_s L)
+Status Length_SeqList(seq_list_s L)
 {
 	if(L.data == NULL)
 	{
@@ -375,7 +375,7 @@ Status Length(seq_list_s L)
 
 
 /* 顺序表判空 */
-Status Empty(seq_list_s L)
+Status Empty_SeqList(seq_list_s L)
 {
 	if(L.data == NULL)
 	{
@@ -394,7 +394,7 @@ Status Empty(seq_list_s L)
 
 
 /* 打印顺序表 */
-Status PrintList(seq_list_s L)
+Status PrintList_SeqList(seq_list_s L)
 {
 	int site;
 

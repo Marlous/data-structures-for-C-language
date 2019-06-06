@@ -26,7 +26,7 @@ typedef struct SeqList{
 /* 单链表节点的定义 */
 typedef struct LNode{
 	ElemType data; // 数据域
-	l_node_s *next; // 指针域
+	struct LNode *next; // 指针域
 }l_node_s;
 
 /* 双链表的定义 */
