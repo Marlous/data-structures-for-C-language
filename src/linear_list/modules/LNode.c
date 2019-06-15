@@ -14,10 +14,10 @@
 Status DisplayLNodeMenu(void);
 Status LNodeMenuSelect(void);
 
-Status CreateList_LNode(l_node_s *L); // 单链表的头节点创建（创建一个头节点，将头节点地址赋给单链表指针变量）
+l_node_s *CreateList_LNode(); // 单链表的头节点创建（创建一个头节点，将头节点地址赋给单链表指针变量）
 Status HeadInsert_LNode(l_node_s *L); // 单链表的多个节点创建并插入（头插法）
 Status FootInsert_LNode(l_node_s *L); // 单链表的多个节点创建并插入（尾插法）
-l_node_s *GetElem_LNode(l_node_s *L, int i);
+l_node_s *GetElem_LNode(l_node_s *L, int i); // 单链表的按序号查找节点
 int Length_LNode(l_node_s *L);
 
 
@@ -43,8 +43,8 @@ Status DisplayLNodeMenu(void)
 	printf("# 1 CreateList()\n");
 	printf("# 2 HeadInsert(l_node_s *L)\n");
 	printf("# 3 FootInsert(l_node_s *L)\n");
-
-
+	printf("# 4 GetElem_LNode(l_node_s *L, int i)\n");
+	printf("# 8 Length_LNode(l_node_s *L)\n");
 
 	printf("# b Back!\n");
 	printf("# q Exit!\n");
@@ -68,39 +68,54 @@ Status LNodeMenuSelect(void)
 		switch(selectnum)
 		{
 			case '1': // 单链表的头节点创建（创建一个头节点，将头节点地址赋给单链表指针变量）
-				if(CreateList_LNode(listcase) == OK)
+				listcase = CreateList_LNode();
+				if(listcase != NULL)
 				{
-					printf("CreateList successed!");
+					printf("CreateList successed!\n");
 				}
 				else
 				{
-					printf("CreateList false!");
+					printf("CreateList false!\n");
 				}
 				break;
 
 			case '2': // 单链表的多个节点创建并插入（头插法）
 				if(HeadInsert_LNode(listcase) == OK)
 				{
-					printf("HeadInsert successed!");
+					printf("HeadInsert successed!\n");
 				}
 				else
 				{
-					printf("HeadInsert false!");
+					printf("HeadInsert false!\n");
 				}
 				break;
 
 			case '3': // 单链表的多个节点创建并插入（尾插法）
 				if(FootInsert_LNode(listcase) == OK)
 				{
-					printf("FootInsert successed!");
+					printf("FootInsert successed!\n");
 				}
 				else
 				{
-					printf("FootInsert false!");
+					printf("FootInsert false!\n");
 				}
 				break;
 
 			case '4': // 单链表的按序号查找节点
+				printf("Please enter i to get element:");
+				int i;
+				l_node_s *p;
+				scanf("%d", &i);
+				p = GetElem_LNode(listcase, i);
+				getchar();
+				if(p != NULL)
+				{
+					printf("GetElem success! e is %c !\n", p->data);
+				}
+				else
+				{
+					printf("GetElem false!\n");
+				}
 				break;
 
 			case '5': // 单链表的按值查找节点
@@ -113,6 +128,7 @@ Status LNodeMenuSelect(void)
 				break;
 
 			case '8': // 单链表的求表长
+				printf("Length_LNode: %d\n", Length_LNode(listcase));
 				break;
 
 			case '9': // 单链表的销毁
@@ -125,19 +141,18 @@ Status LNodeMenuSelect(void)
 
 
 /* 单链表的头节点创建（创建一个头节点，将头节点地址赋给单链表指针变量） */
-Status CreateList_LNode(l_node_s *L)
+l_node_s *CreateList_LNode()
 {
 	l_node_s *head_node;
 	head_node = (l_node_s *)malloc(sizeof(l_node_s));
-	L = head_node;
-	if(L != NULL)
+	if(head_node != NULL)
 	{
-		L->next = NULL;
-		return OK;
+		head_node->next = NULL;
+		return head_node;
 	}
 	else
 	{
-		return ERROR;
+		return NULL;
 	}
 }
 
@@ -148,7 +163,7 @@ Status HeadInsert_LNode(l_node_s *L)
 	l_node_s *one_node;
 	ElemType e;
 
-	printf("Please enter e, enter \'q\' to end input!");
+	printf("Please enter e, enter \'q\' to end input!\n");
 	scanf("%c", &e);
 	getchar();
 
@@ -173,24 +188,24 @@ Status FootInsert_LNode(l_node_s *L)
 	l_node_s *one_node;
 	ElemType e;
 
-	printf("Please enter e, enter \'q\' to end input!");
+	printf("Please enter e, enter \'q\' to end input!\n");
 	scanf("%c", &e);
 	getchar();
 
 	while(e != 'q')
 	{
-		one_node = (l_node_s *)malloc(sizeof(l_node_s));
+		one_node = (l_node_s *)malloc(sizeof(l_node_s)); // 创建尾节点
 		one_node->data = e;
 		one_node->next = NULL;
 
-		l_node_s *end_node;
-		end_node = L; // 先将头节点当作是最后一个节点
-		while(end_node->next != NULL) // 如果不是最后一个节点的话
+		l_node_s *end_node_maybe; // 用来存储节点地址
+		end_node_maybe = L; // 先将头节点当作是最后一个节点，遍历寻找最后一个节点
+		while(end_node_maybe->next != NULL) // 如果不是最后一个节点的话
 		{
-			end_node = end_node->next; // 将下一个节点当作是最后一个节点
+			end_node_maybe = end_node_maybe->next; // 将下一个节点当作是最后一个节点
 		}
 
-		end_node->next = one_node; // 将此节点地址赋给最后一个节点的指针域
+		end_node_maybe->next = one_node; // 将此节点地址赋给最后一个节点的指针域
 
 		scanf("%c", &e);
 		getchar();
@@ -204,22 +219,23 @@ Status FootInsert_LNode(l_node_s *L)
 l_node_s *GetElem_LNode(l_node_s *L, int i) // 传入指针变量即可，找到返回节点地址
 {
 	l_node_s *p;
-	int j;
+	int count;
 
 	if(i >= 1 && i <= Length_LNode(L)) // 位置值合法
 	{
-		for(j = 1; j <= i; j++)
+		p = L->next;
+		if(i == 1)
+		{
+			return p;
+		}
+		else
+		{
+			for(count = 1; count < i; count++)
 			{
-				if(j == 1)
-				{
-					p = L->next;
-				}
-				if(p->next != NULL)
-				{
-					p = p->next;
-				}
+				p = p->next;
 			}
-		return p;
+			return p;
+		}
 	}
 	else // 位置值不合法
 	{
@@ -251,11 +267,11 @@ int Length_LNode(l_node_s *L)
 	{
 		count = 1;
 		p = L->next;
-	}
-	while(p->next != NULL)
-	{
-		count = count + 1;
-		p = L->next;
+		while(p->next != NULL)
+		{
+			count = count + 1;
+			p = p->next;
+		}
 	}
 
 	return count;

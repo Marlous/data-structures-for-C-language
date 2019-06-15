@@ -56,17 +56,17 @@ Status LinearListMenuSelect(void)
 
 		switch(selectnum)
 		{
-			case '1':
+			case '1': // 顺序表
 				SqListSeqList();
 				break;
 
-	/*		case '2':
-					LNode();
-					break;*/
+			case '2': // 单链表
+				LNode();
+				break;
 
 	/*		case '3':
-					DNode();
-					break;*/
+				DNode();
+				break;*/
 
 			case 'b':
 				main();
